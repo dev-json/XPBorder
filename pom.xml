@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.jxson.xpborder</groupId>
+    <artifactId>XPBorderV2</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.7</version>
+
+    <modules>
+        <module>XPBorder</module>
+        <module>v1_17_R1</module>
+        <module>v1_18_R1</module>
+        <module>interfaces</module>
+    </modules>
+
+    <build>
+        <directory>../target</directory> <!-- Build it one level up, because it is the one we care about -->
+        <finalName>XPBorder</finalName>
+        <!-- Define filtering for the inclusion of plugin.yml, so we can utilize the pom.xml version in it -->
+        <resources>
+            <resource>
+                <targetPath>.</targetPath>
+                <filtering>true</filtering>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>plugin.yml</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.4</version>
+                <configuration>
+                    <!-- put your configurations here -->
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <properties>
+        <maven.compiler.source>16</maven.compiler.source>
+        <maven.compiler.target>16</maven.compiler.target>
+    </properties>
+
+</project>

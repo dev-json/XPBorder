@@ -1,0 +1,10 @@
+name: XPBorder
+authors:
+  - Jxson
+main: de.jxson.xpborder.XPBorder
+version: 1.0.7
+commands:
+  xpborder:
+    aliases:
+      - xpb
+    description: To manage your border
