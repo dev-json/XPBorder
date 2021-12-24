@@ -41,7 +41,7 @@ public class XPBorderCommand implements CommandExecutor, TabCompleter {
                         case "refresh":
                             player.sendMessage(Data.color(data.getPrefix() + "&eWorldborder refreshed!"));
                             if(settingsManager.getSetting("xpborder").isToggled())
-                                worldborderManager.sendBorder(player);
+                                Bukkit.getOnlinePlayers().forEach(worldborderManager::sendBorder);
                             break;
                         case "reload":
                             player.sendMessage(Data.color(data.getPrefix() + "&eReloaded config file!"));
@@ -52,11 +52,11 @@ public class XPBorderCommand implements CommandExecutor, TabCompleter {
                             if(settingsManager.getSetting("xpborder").isToggled()) {
                                 player.sendMessage(Data.color(data.getPrefix() + "&eWorldborder disabled!"));
                                 settingsManager.getSetting("xpborder").toggle(false);
-                                worldborderManager.removeBorder(player);
+                                Bukkit.getOnlinePlayers().forEach(worldborderManager::removeBorder);
                             } else {
                                 player.sendMessage(Data.color(data.getPrefix() + "&eWorldborder enabled!"));
                                 settingsManager.getSetting("xpborder").toggle(true);
-                                worldborderManager.sendBorder(player);
+                                Bukkit.getOnlinePlayers().forEach(worldborderManager::sendBorder);
                             }
                             worldborderManager.reload();
                             break;
