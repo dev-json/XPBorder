@@ -60,6 +60,7 @@ public class XPBorder extends JavaPlugin {
 
         Bukkit.getOnlinePlayers().forEach(players -> {
             worldborderManager.sendBorder(players);
+            worldborderManager.checkIfPlayerIsOutside(players);
         });
 
     }
