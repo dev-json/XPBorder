@@ -31,6 +31,7 @@ public class WorldborderManager {
     private SettingsManager settingsManager = XPBorder.getInstance().getSettingsManager();
 
     private int increaseSize, currentSize, level;
+    float expbar;
 
     public WorldborderManager() {
         worldborderConfig = new ConfigManager("worldborder.yml");
@@ -52,6 +53,8 @@ public class WorldborderManager {
             worldborderConfig.set("worldborder."+player.getWorld().getName()+".center.world", player.getLocation().getWorld().getName());
         if(worldborderConfig.getString("worldborder.level") == null)
             worldborderConfig.set("worldborder.level", 0);
+        if(worldborderConfig.getString("worldborder.xpbar") == null)
+            worldborderConfig.set("worldborder.xpbar", 0.0);
     }
 
     public void sendBorder(Player player) {
@@ -117,6 +120,7 @@ public class WorldborderManager {
                 currentSize++;
             }
         }
+
 
 
         if (currentSize == 0 || currentSize == 1)
@@ -209,6 +213,16 @@ public class WorldborderManager {
     public int getLevel() {
         level = worldborderConfig.getInt("worldborder.level");
         return level;
+    }
+
+    public void setExpbar(float expbar) {
+        worldborderConfig.set("worldborder.xpbar", expbar);
+        this.expbar = expbar;
+    }
+
+    public float getExpbar() {
+        expbar = worldborderConfig.getFloat("worldborder.xpbar");
+        return expbar;
     }
 
     public void reload() {

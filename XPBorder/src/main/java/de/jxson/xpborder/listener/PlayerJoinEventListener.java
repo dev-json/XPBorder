@@ -21,6 +21,7 @@ public class PlayerJoinEventListener implements Listener {
         Player player = event.getPlayer();
 
         player.setLevel(worldborderManager.getLevel());
+        player.setExp(worldborderManager.getExpbar());
         worldborderManager.sendBorder(player);
 
         if(!player.hasPlayedBefore())

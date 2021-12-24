@@ -23,8 +23,10 @@ public class PlayerChangeLevelEventListener implements Listener {
         worldborderManager.adjustSize(player);
         Bukkit.getOnlinePlayers().forEach(all -> {
             all.setLevel(worldborderManager.getLevel());
-            worldborderManager.createBossbar(player);
         });
+
+        worldborderManager.createBossbar(player);
+
     }
 
 }
