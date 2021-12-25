@@ -1,6 +1,7 @@
 package de.jxson.xpborder.listener;
 
 import de.jxson.xpborder.XPBorder;
+import de.jxson.xpborder.world.worldborder.BorderSizeCalculationType;
 import de.jxson.xpborder.world.worldborder.WorldborderManager;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -18,15 +19,16 @@ public class PlayerExpChangeEventListener implements Listener {
 
     @EventHandler
     public void onExpChange(PlayerExpChangeEvent event) {
-        Bukkit.getScheduler().runTaskLater(XPBorder.getInstance(), new Runnable() {
-            @Override
-            public void run() {
-                Bukkit.getOnlinePlayers().forEach(player -> {
-                    player.setExp(event.getPlayer().getExp());
-                    worldborderManager.setExpbar(event.getPlayer().getExp());
-                });
-            }
-        }, 1);
+        if (XPBorder.getInstance().getSettingsManager().getSetting("calctype").value().equals(BorderSizeCalculationType.CONFIG.name())) {
+            Bukkit.getScheduler().runTaskLater(XPBorder.getInstance(), new Runnable() {
+                @Override
+                public void run() {
+                    Bukkit.getOnlinePlayers().forEach(player -> {
+                        player.setExp(event.getPlayer().getExp());
+                        worldborderManager.setExpbar(event.getPlayer().getExp());
+                    });
+                }
+            }, 1);
+        }
     }
-
 }

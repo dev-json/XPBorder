@@ -1,6 +1,7 @@
 package de.jxson.xpborder.listener;
 
 import de.jxson.xpborder.XPBorder;
+import de.jxson.xpborder.world.worldborder.BorderSizeCalculationType;
 import de.jxson.xpborder.world.worldborder.WorldborderManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -21,9 +22,12 @@ public class PlayerChangeLevelEventListener implements Listener {
     public void onLevelChange(PlayerLevelChangeEvent event) {
         Player player = event.getPlayer();
         worldborderManager.adjustSize(player);
-        Bukkit.getOnlinePlayers().forEach(all -> {
-            all.setLevel(worldborderManager.getLevel());
-        });
+
+        if(XPBorder.getInstance().getSettingsManager().getSetting("calctype").value().equals(BorderSizeCalculationType.CONFIG.name())) {
+            Bukkit.getOnlinePlayers().forEach(all -> {
+                all.setLevel(worldborderManager.getLevel());
+            });
+        }
 
         worldborderManager.createBossbar(player);
 

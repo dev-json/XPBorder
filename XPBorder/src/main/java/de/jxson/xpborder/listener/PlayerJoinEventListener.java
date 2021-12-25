@@ -1,7 +1,9 @@
 package de.jxson.xpborder.listener;
 
 import de.jxson.xpborder.XPBorder;
+import de.jxson.xpborder.world.worldborder.BorderSizeCalculationType;
 import de.jxson.xpborder.world.worldborder.WorldborderManager;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,10 +21,13 @@ public class PlayerJoinEventListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+        if(XPBorder.getInstance().getSettingsManager().getSetting("calctype").value().equals(BorderSizeCalculationType.CONFIG.name())) {
+            player.setLevel(worldborderManager.getLevel());
+            player.setExp(worldborderManager.getExpbar());
+        }
 
-        player.setLevel(worldborderManager.getLevel());
-        player.setExp(worldborderManager.getExpbar());
         worldborderManager.sendBorder(player);
+        worldborderManager.adjustSize(player);
 
         if(!player.hasPlayedBefore())
             player.teleport(worldborderManager.getBorderCenter(player.getWorld().getName()));

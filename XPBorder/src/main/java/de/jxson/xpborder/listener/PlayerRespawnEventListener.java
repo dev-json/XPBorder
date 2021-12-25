@@ -1,6 +1,7 @@
 package de.jxson.xpborder.listener;
 
 import de.jxson.xpborder.XPBorder;
+import de.jxson.xpborder.world.worldborder.BorderSizeCalculationType;
 import de.jxson.xpborder.world.worldborder.WorldborderManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -22,8 +23,12 @@ public class PlayerRespawnEventListener implements Listener {
         Player player = event.getPlayer();
         worldborderManager.sendBorder(player);
         event.setRespawnLocation(worldborderManager.getBorderCenter(player.getWorld().getName()));
-        player.setLevel(worldborderManager.getLevel());
-        Bukkit.getOnlinePlayers().forEach(players -> players.setLevel(worldborderManager.getLevel()));
+        if(XPBorder.getInstance().getSettingsManager().getSetting("calctype").value().equals(BorderSizeCalculationType.CONFIG.name())) {
+            player.setLevel(worldborderManager.getLevel());
+            Bukkit.getOnlinePlayers().forEach(players -> players.setLevel(worldborderManager.getLevel()));
+        } else {
+            player.setLevel(worldborderManager.calcRespawnLevelFromPlayer(player));
+        }
     }
 
 }
