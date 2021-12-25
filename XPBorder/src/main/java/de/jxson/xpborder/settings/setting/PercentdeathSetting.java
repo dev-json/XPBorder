@@ -36,7 +36,6 @@ public class PercentdeathSetting implements Setting {
     public void setPercent(int percent) {
         this.percent = percent;
         configManager.set("setting." + name() + ".percent", percent);
-
     }
 
     public boolean isToggled() {

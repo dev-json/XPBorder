@@ -3,11 +3,14 @@ package de.jxson.xpborder.world;
 import de.jxson.xpborder.XPBorder;
 import de.jxson.xpborder.config.ConfigManager;
 import de.jxson.xpborder.settings.SettingsManager;
+import net.minecraft.server.players.ExpirableListEntry;
 import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Author: Jason M.
@@ -17,9 +20,11 @@ import java.io.IOException;
 public class WorldManager {
 
     private final SettingsManager settingsManager;
+    private ArrayList<Player> playerNeedsConfirm;
 
     public WorldManager() {
         settingsManager = XPBorder.getInstance().getSettingsManager();
+        playerNeedsConfirm = new ArrayList<>();
     }
 
     public static void reset() {
@@ -58,4 +63,7 @@ public class WorldManager {
         return new ConfigManager("plugins/XPBorder/", "settings.yml").getBool("setting.worldreset.enabled");
     }
 
+    public ArrayList<Player> getPlayerNeedsConfirm() {
+        return playerNeedsConfirm;
+    }
 }

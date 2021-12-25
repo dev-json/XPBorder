@@ -1,6 +1,7 @@
 package de.jxson.xpborder.config;
 
 import de.jxson.xpborder.XPBorder;
+import de.jxson.xpborder.world.worldborder.BorderSizeCalculationType;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
@@ -53,6 +54,10 @@ public class ConfigManager {
 
     public float getFloat(String path) { return (float) configuration.getDouble(path);}
 
+    public Object get(String path) {
+        return configuration.get(path);
+    }
+
     //Prüft ob Datei existiert
     public boolean isFilealreadyExists() {
         return file.exists();
@@ -73,5 +78,4 @@ public class ConfigManager {
     public File getFile() {
         return file;
     }
-
 }

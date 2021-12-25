@@ -39,7 +39,7 @@ public class ExpandsizeSetting implements Setting {
 
     public void setSize(int size) {
         this.size = size;
-        configManager.set("setting." + name() + ".percent", size);
+        configManager.set("setting." + name() + ".size", size);
 
     }
 

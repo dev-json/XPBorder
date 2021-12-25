@@ -26,8 +26,8 @@ public class IsPlayerInBorderTask extends BukkitRunnable {
 
     @Override
     public void run() {
-        if(player.isOnline()) {
-            x = worldborderManager.getLevel();
+        if(player.isOnline() && !player.hasPermission("xpb.bypass")) {
+            x = worldborderManager.getSizeInBlocks();
             if(settingsManager.getSetting("xpborder").isToggled()) {
                 if(player.getLocation().getBlockX() <= worldborderManager.getBorderCenter(player.getWorld().getName()).add(x,0,x).getBlockX() && player.getLocation().getBlockX() >= worldborderManager.getBorderCenter(player.getWorld().getName()).add(-x,0,-x).getBlockX() && player.getLocation().getBlockZ() >= worldborderManager.getBorderCenter(player.getWorld().getName()).add(-x, 0, -x).getBlockZ() && player.getLocation().getBlockZ() <= worldborderManager.getBorderCenter(player.getWorld().getName()).add(x, 0, x).getBlockZ()) {
                 } else {

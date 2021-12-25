@@ -36,6 +36,8 @@ public class Data {
         player.sendMessage(color("&9/xpb reload &8- &eReload the config file"));
         player.sendMessage(color("&9/xpb toggle &8- &eEnable/Disable the border"));
         player.sendMessage(color("&9/xpb center &8- &eSet the center of the border at your location"));
+        player.sendMessage(color("&9/xpb reset &8- &eDeletes the current world and generates a new world"));
+        player.sendMessage(color("&9/xpb settings &8- &eOpen the settings inventory"));
         player.sendMessage(color("&7&m---------------------------"));
 
     }

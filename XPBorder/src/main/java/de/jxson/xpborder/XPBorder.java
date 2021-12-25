@@ -3,6 +3,7 @@ package de.jxson.xpborder;
 import de.jxson.xpborder.commands.XPBorderCommand;
 import de.jxson.xpborder.config.ConfigManager;
 import de.jxson.xpborder.interfaces.I_XPBorderManager;
+import de.jxson.xpborder.inventory.MenuManager;
 import de.jxson.xpborder.listener.*;
 import de.jxson.xpborder.settings.SettingsManager;
 import de.jxson.xpborder.utils.Data;
@@ -29,6 +30,7 @@ public class XPBorder extends JavaPlugin {
     private WorldManager worldManager;
     private I_XPBorderManager xpWorldborderManager;
     private WorldborderManager worldborderManager;
+    private MenuManager menuManager;
 
     public void onLoad() {
         WorldManager.reset();
@@ -43,6 +45,7 @@ public class XPBorder extends JavaPlugin {
         this.worldManager = new WorldManager();
         this.xpWorldborderManager = Version.verifyVersion();
         this.worldborderManager = new WorldborderManager();
+        this.menuManager = new MenuManager();
 
         Bukkit.getPluginManager().registerEvents(new PlayerJoinEventListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerDeathEventListener(), this);
@@ -50,6 +53,8 @@ public class XPBorder extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerChangeWorldEventListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerChangeLevelEventListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerExpChangeEventListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerQuitEventListener(), this);
+        Bukkit.getPluginManager().registerEvents(new MenuClickListener(), this);
 
         getCommand("xpborder").setExecutor(new XPBorderCommand());
 
@@ -95,5 +100,9 @@ public class XPBorder extends JavaPlugin {
 
     public WorldborderManager getWorldborderManager() {
         return worldborderManager;
+    }
+
+    public MenuManager getMenuManager() {
+        return menuManager;
     }
 }

@@ -39,6 +39,8 @@ public class SettingsManager {
         settings.add(new SecuritySetting());
         settings.add(new ExpandsizeSetting());
         settings.add(new BossbarSetting());
+        settings.add(new ShrinkSetting());
+        settings.add(new BorderCalculationTypeSetting());
     }
 
     public Setting getSetting(String name) {

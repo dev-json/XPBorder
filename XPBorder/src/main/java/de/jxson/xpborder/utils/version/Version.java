@@ -11,7 +11,7 @@ import org.bukkit.Bukkit;
  */
 public class Version {
 
-    private static String version;
+    private static String version = "no version found";
 
      public static I_XPBorderManager verifyVersion() {
         try {
