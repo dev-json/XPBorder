@@ -1,6 +1,7 @@
 package de.jxson.xpborder.commands;
 
 import de.jxson.xpborder.XPBorder;
+import de.jxson.xpborder.inventory.menu.menus.SettingsMenu;
 import de.jxson.xpborder.settings.SettingsManager;
 import de.jxson.xpborder.utils.Data;
 import de.jxson.xpborder.world.WorldManager;
@@ -24,8 +25,11 @@ public class XPBorderCommand implements CommandExecutor, TabCompleter {
 
     private final Data data = XPBorder.getInstance().getData();
     private final WorldborderManager worldborderManager = XPBorder.getInstance().getWorldborderManager();
-    private final WorldManager worldManager = XPBorder.getInstance().getWorldManager();
     private final SettingsManager settingsManager = XPBorder.getInstance().getSettingsManager();
+
+    private ArrayList<Player> players = XPBorder.getInstance().getWorldManager().getPlayerNeedsConfirm();
+    private long executedAt;
+    private final long TIME_TO_CONFIRM_IN_MS = 10000; //10 sec
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
@@ -46,7 +50,6 @@ public class XPBorderCommand implements CommandExecutor, TabCompleter {
                         case "reload":
                             player.sendMessage(Data.color(data.getPrefix() + "&eReloaded config file!"));
                             worldborderManager.reload();
-                            settingsManager.initSettings();
                             break;
                         case "toggle":
                             if(settingsManager.getSetting("xpborder").isToggled()) {
@@ -71,9 +74,41 @@ public class XPBorderCommand implements CommandExecutor, TabCompleter {
                             }
                             break;
                         case "reset":
-                            Bukkit.getOnlinePlayers().forEach(players -> players.kickPlayer(Data.color("&9World reset!")));
-                            worldManager.toggleReset(true);
-                            Bukkit.spigot().restart();
+                            if(args.length == 1) {
+                                 if(!players.contains(player)) {
+                                     player.sendMessage(Data.color(data.getPrefix() + "&cAre you sure you want to reset your world?"));
+                                     player.sendMessage(Data.color(data.getPrefix() + "&cIf you still want to continue execute &e/xpb reset confirm"));
+                                     players.add(player);
+                                    executedAt = System.currentTimeMillis();
+                                } else {
+                                     if(executedAt + TIME_TO_CONFIRM_IN_MS < System.currentTimeMillis()) {
+                                         players.remove(player);
+                                         player.performCommand("xpb reset");
+                                        return false;
+                                     }
+                                    player.sendMessage(Data.color(data.getPrefix() + "§cYou need to run &e/xpb reset confirm &cbefore requesting a new reset!"));
+                                }
+
+                            } else if(args.length == 2 && args[1].equalsIgnoreCase("confirm")) {
+                                if(players.contains(player)) {
+                                    if(executedAt + TIME_TO_CONFIRM_IN_MS > System.currentTimeMillis()) {
+                                        /*Bukkit.getOnlinePlayers().forEach(players -> players.kickPlayer(Data.color("&9World reset!")));
+                                        worldManager.toggleReset(true);
+                                        Bukkit.spigot().restart();*/
+                                        player.sendMessage(Data.color(data.getPrefix() + "§eWorld will be resetted!"));
+                                        players.remove(player);
+                                    } else {
+                                        players.remove(player);
+                                        player.sendMessage(Data.color(data.getPrefix() + "§cYou need to confirm in within 10 seconds! Please try again!"));
+                                    }
+                                } else {
+                                    data.sendHelp(player);
+                                }
+                            }
+
+                            break;
+                        case "settings":
+                            new SettingsMenu(XPBorder.getInstance().getMenuManager().getPlayerMenuUtility(player)).open();
                             break;
                         default:
                             data.sendHelp(player);
@@ -99,6 +134,7 @@ public class XPBorderCommand implements CommandExecutor, TabCompleter {
             arrayList.add("toggle");
             arrayList.add("center");
             arrayList.add("reset");
+            arrayList.add("settings");
 
             return arrayList;
         }
