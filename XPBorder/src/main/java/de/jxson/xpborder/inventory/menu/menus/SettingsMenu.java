@@ -9,6 +9,7 @@ import de.jxson.xpborder.inventory.menu.menus.submenus.ExpandsizeSettingMenu;
 import de.jxson.xpborder.settings.SettingsManager;
 import de.jxson.xpborder.utils.Data;
 import de.jxson.xpborder.utils.ItemCreator;
+import de.jxson.xpborder.world.worldborder.WorldborderManager;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -21,6 +22,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 public class SettingsMenu extends Menu {
 
     SettingsManager settingsManager = XPBorder.getInstance().getSettingsManager();
+    WorldborderManager worldborderManager = XPBorder.getInstance().getWorldborderManager();
 
     public SettingsMenu(PlayerMenuUtility playerMenuUtility) {
         super(playerMenuUtility);
@@ -64,8 +66,10 @@ public class SettingsMenu extends Menu {
     public void setMenuItems() {
         if(settingsManager.getSetting("xpborder").isToggled()) {
             new ItemCreator(Material.GREEN_STAINED_GLASS, 1).setName("§a§lXPBorder §8[§2Enabled§8]").setLore(" ", "§eSetting §7for the §eBorder §7activation", " ", "§7[Click] §cClick to disable", " ").setSlot(inventory, 0);
+            worldborderManager.sendBorder(playerMenuUtility.getOwner());
         } else {
             new ItemCreator(Material.RED_STAINED_GLASS, 1).setName("§c§lXPBorder §8[§4Disabled§8]").setLore(" ", "§eSetting §7for the §eBorder §7activation", " ", "§7[Click] §aClick to enable", " ").setSlot(inventory, 0);
+            worldborderManager.removeBorder(playerMenuUtility.getOwner());
         }
 
         if(settingsManager.getSetting("security").isToggled()) {
@@ -82,6 +86,12 @@ public class SettingsMenu extends Menu {
         }
 
         if(settingsManager.getSetting("shrink").isToggled()) {
+            new ItemCreator(Material.GREEN_STAINED_GLASS, 1).setName("§a§lShrink §8[§2Enabled§8]").setLore(" ", "§eSetting §7for the §eShrink §7activation", " ", "§7[Click] §cClick to disable", " ").setSlot(inventory, 3);
+        } else {
+            new ItemCreator(Material.RED_STAINED_GLASS, 1).setName("§c§lShrink §8[§4Disabled§8]").setLore(" ", "§eSetting §7for the §eShrink §7activation", " ", "§7[Click] §aClick to enable", " ").setSlot(inventory, 3);
+        }
+
+        if(settingsManager.getSetting("MobsSpawnOutside").isToggled()) {
             new ItemCreator(Material.GREEN_STAINED_GLASS, 1).setName("§a§lShrink §8[§2Enabled§8]").setLore(" ", "§eSetting §7for the §eShrink §7activation", " ", "§7[Click] §cClick to disable", " ").setSlot(inventory, 3);
         } else {
             new ItemCreator(Material.RED_STAINED_GLASS, 1).setName("§c§lShrink §8[§4Disabled§8]").setLore(" ", "§eSetting §7for the §eShrink §7activation", " ", "§7[Click] §aClick to enable", " ").setSlot(inventory, 3);

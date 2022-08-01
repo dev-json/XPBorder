@@ -20,6 +20,9 @@ public class PlayerRespawnEventListener implements Listener {
 
     @EventHandler
     public void onRespawn(PlayerRespawnEvent event) {
+        if(!XPBorder.getInstance().getSettingsManager().getSetting("xpborder").isToggled()) {
+            return;
+        }
         Player player = event.getPlayer();
         worldborderManager.sendBorder(player);
         event.setRespawnLocation(worldborderManager.getBorderCenter(player.getWorld().getName()));

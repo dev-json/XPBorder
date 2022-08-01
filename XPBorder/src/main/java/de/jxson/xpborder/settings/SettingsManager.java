@@ -41,6 +41,7 @@ public class SettingsManager {
         settings.add(new BossbarSetting());
         settings.add(new ShrinkSetting());
         settings.add(new BorderCalculationTypeSetting());
+        settings.add(new SpawnMobsOutsideSetting());
     }
 
     public Setting getSetting(String name) {

@@ -20,6 +20,9 @@ public class PlayerQuitEventListener implements Listener {
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
+        if(!XPBorder.getInstance().getSettingsManager().getSetting("xpborder").isToggled()) {
+            return;
+        }
         worldborderManager.setSizeInBlocks(Bukkit.getOnlinePlayers().stream().mapToInt(Player::getLevel).sum());
         new BukkitRunnable() {
             @Override

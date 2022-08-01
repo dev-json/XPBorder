@@ -19,6 +19,10 @@ public class PlayerExpChangeEventListener implements Listener {
 
     @EventHandler
     public void onExpChange(PlayerExpChangeEvent event) {
+        if(!XPBorder.getInstance().getSettingsManager().getSetting("xpborder").isToggled()) {
+            return;
+        }
+
         if (XPBorder.getInstance().getSettingsManager().getSetting("calctype").value().equals(BorderSizeCalculationType.CONFIG.name())) {
             Bukkit.getScheduler().runTaskLater(XPBorder.getInstance(), new Runnable() {
                 @Override

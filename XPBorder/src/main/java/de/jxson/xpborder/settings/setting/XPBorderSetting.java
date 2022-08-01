@@ -16,7 +16,7 @@ public class XPBorderSetting implements Setting {
             b = configManager.getBool("setting." + name() + ".enabled");
         } else {
             configManager.set("setting." + name() + ".enabled", true);
-            b = false;
+            b = true;
         }
 
     }

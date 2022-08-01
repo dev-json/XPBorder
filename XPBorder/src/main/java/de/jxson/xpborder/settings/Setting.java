@@ -1,7 +1,6 @@
 package de.jxson.xpborder.settings;
 
 import de.jxson.xpborder.config.ConfigManager;
-import net.minecraft.network.protocol.Packet;
 
 /**
  * Author: Jason M.

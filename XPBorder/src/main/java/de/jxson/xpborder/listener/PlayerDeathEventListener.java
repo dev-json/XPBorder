@@ -18,6 +18,11 @@ public class PlayerDeathEventListener implements Listener {
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
+
+        if(!XPBorder.getInstance().getSettingsManager().getSetting("xpborder").isToggled()) {
+            return;
+        }
+
         event.setDroppedExp(0);
         event.setKeepLevel(true);
 

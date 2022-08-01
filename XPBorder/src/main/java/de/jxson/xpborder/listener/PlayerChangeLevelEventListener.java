@@ -1,6 +1,7 @@
 package de.jxson.xpborder.listener;
 
 import de.jxson.xpborder.XPBorder;
+import de.jxson.xpborder.settings.SettingsManager;
 import de.jxson.xpborder.world.worldborder.BorderSizeCalculationType;
 import de.jxson.xpborder.world.worldborder.WorldborderManager;
 import org.bukkit.Bukkit;
@@ -21,6 +22,10 @@ public class PlayerChangeLevelEventListener implements Listener {
     @EventHandler
     public void onLevelChange(PlayerLevelChangeEvent event) {
         Player player = event.getPlayer();
+        if(!XPBorder.getInstance().getSettingsManager().getSetting("xpborder").isToggled()) {
+            return;
+        }
+
         worldborderManager.adjustSize(player);
 
         if(XPBorder.getInstance().getSettingsManager().getSetting("calctype").value().equals(BorderSizeCalculationType.CONFIG.name())) {

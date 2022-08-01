@@ -3,7 +3,6 @@ package de.jxson.xpborder.world;
 import de.jxson.xpborder.XPBorder;
 import de.jxson.xpborder.config.ConfigManager;
 import de.jxson.xpborder.settings.SettingsManager;
-import net.minecraft.server.players.ExpirableListEntry;
 import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

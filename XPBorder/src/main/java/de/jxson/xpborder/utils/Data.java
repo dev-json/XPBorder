@@ -46,5 +46,4 @@ public class Data {
         return ChatColor.translateAlternateColorCodes('&', input);
     }
 
-
 }

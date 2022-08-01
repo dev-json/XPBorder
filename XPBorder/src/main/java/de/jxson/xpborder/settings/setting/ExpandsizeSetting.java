@@ -17,10 +17,10 @@ public class ExpandsizeSetting implements Setting {
             b = configManager.getBool("setting." + name() + ".enabled");
             size = configManager.getInt("setting." + name() + ".size");
         } else {
-            configManager.set("setting." + name() + ".enabled", false);
+            configManager.set("setting." + name() + ".enabled", true);
             configManager.set("setting." + name() + ".size", 1);
-            b = false;
-            size = 0;
+            b = true;
+            size = 1;
         }
 
     }

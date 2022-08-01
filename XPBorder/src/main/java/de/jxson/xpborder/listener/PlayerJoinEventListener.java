@@ -20,6 +20,10 @@ public class PlayerJoinEventListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
+        if(!XPBorder.getInstance().getSettingsManager().getSetting("xpborder").isToggled()) {
+            return;
+        }
+
         Player player = event.getPlayer();
         if(XPBorder.getInstance().getSettingsManager().getSetting("calctype").value().equals(BorderSizeCalculationType.CONFIG.name())) {
             player.setLevel(worldborderManager.getLevel());

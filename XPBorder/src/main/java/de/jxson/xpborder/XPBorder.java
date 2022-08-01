@@ -1,7 +1,6 @@
 package de.jxson.xpborder;
 
 import de.jxson.xpborder.commands.XPBorderCommand;
-import de.jxson.xpborder.config.ConfigManager;
 import de.jxson.xpborder.interfaces.I_XPBorderManager;
 import de.jxson.xpborder.inventory.MenuManager;
 import de.jxson.xpborder.listener.*;
@@ -38,12 +37,19 @@ public class XPBorder extends JavaPlugin {
 
     public void onEnable() {
         instance = this;
+
+        if((this.xpWorldborderManager = Version.verifyVersion()) == null)
+        {
+            System.out.println("Version is not supported!");
+            instance.setEnabled(false);
+            return;
+        }
+
         this.data = new Data();
         this.updateChecker = new UpdateChecker(97510);
         this.settingsManager = new SettingsManager();
 
         this.worldManager = new WorldManager();
-        this.xpWorldborderManager = Version.verifyVersion();
         this.worldborderManager = new WorldborderManager();
         this.menuManager = new MenuManager();
 
@@ -55,6 +61,7 @@ public class XPBorder extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerExpChangeEventListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerQuitEventListener(), this);
         Bukkit.getPluginManager().registerEvents(new MenuClickListener(), this);
+        Bukkit.getPluginManager().registerEvents(new CreatureSpawnEventListener(), this);
 
         getCommand("xpborder").setExecutor(new XPBorderCommand());
 
