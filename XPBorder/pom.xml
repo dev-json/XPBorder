@@ -6,7 +6,7 @@
     <parent>
         <artifactId>XPBorderV2</artifactId>
         <groupId>de.jxson.xpborder</groupId>
-        <version>1.0.7</version>
+        <version>1.0.8</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -22,22 +22,27 @@
         <dependency>
             <groupId>de.jxson.xpborder</groupId>
             <artifactId>interfaces</artifactId>
-            <version>1.0.7</version>
+            <version>1.0.8</version>
         </dependency>
         <dependency>
             <groupId>de.jxson.xpborder</groupId>
             <artifactId>v1_17_R1</artifactId>
-            <version>1.0.7</version>
+            <version>1.0.8</version>
         </dependency>
         <dependency>
             <groupId>de.jxson.xpborder</groupId>
             <artifactId>v1_18_R1</artifactId>
-            <version>1.0.7</version>
+            <version>1.0.8</version>
         </dependency>
         <dependency>
             <groupId>de.jxson.xpborder</groupId>
             <artifactId>v1_18_2_R1</artifactId>
-            <version>1.0.7</version>
+            <version>1.0.8</version>
+        </dependency>
+        <dependency>
+            <groupId>de.jxson.xpborder</groupId>
+            <artifactId>v1_19_R1</artifactId>
+            <version>1.0.8</version>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>

@@ -22,7 +22,7 @@ public class CreatureSpawnEventListener implements Listener {
     @EventHandler
     public void onCreatureSpawn(CreatureSpawnEvent event) {
 
-        if(!XPBorder.getInstance().getSettingsManager().getSetting("xpborder").isToggled()) {
+        if(XPBorder.getInstance().getSettingsManager().getSetting("xpborder").isToggled()) {
             return;
         }
 

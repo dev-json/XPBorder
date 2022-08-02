@@ -7,13 +7,14 @@
     <groupId>de.jxson.xpborder</groupId>
     <artifactId>XPBorderV2</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
 
     <modules>
         <module>XPBorder</module>
         <module>v1_17_R1</module>
         <module>v1_18_R1</module>
         <module>v1_18_2_R1</module>
+        <module>v1_19_R1</module>
         <module>interfaces</module>
     </modules>
 
