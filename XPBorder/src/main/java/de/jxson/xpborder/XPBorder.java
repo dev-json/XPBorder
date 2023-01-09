@@ -13,6 +13,8 @@ import de.jxson.xpborder.world.worldborder.WorldborderManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.logging.Level;
+
 /**
  * Author: Jason M.
  * de.jxson.xpborder
@@ -40,7 +42,7 @@ public class XPBorder extends JavaPlugin {
 
         if((this.xpWorldborderManager = Version.verifyVersion()) == null)
         {
-            System.out.println("Version is not supported!");
+            getLogger().log(Level.WARNING, "Version is not supported!");
             instance.setEnabled(false);
             return;
         }

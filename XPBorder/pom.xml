@@ -45,6 +45,11 @@
             <version>1.0.8</version>
         </dependency>
         <dependency>
+            <groupId>de.jxson.xpborder</groupId>
+            <artifactId>v1_19_3_R1</artifactId>
+            <version>1.0.8</version>
+        </dependency>
+        <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.11.0</version>
