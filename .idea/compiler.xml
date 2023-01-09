@@ -14,13 +14,16 @@
         <module name="v1_17_R1" />
         <module name="interfaces" />
         <module name="v1_19_R1" />
+        <module name="v1_19_3_R1" />
         <module name="v1_18_R1" />
         <module name="v1_18_2_R1" />
         <module name="XPBorder" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="v1_18_2_R1 (1)" target="16" />
       <module name="v1_18_R2" target="16" />
+      <module name="v1_19_R1 (1)" target="16" />
     </bytecodeTargetLevel>
   </component>
 </project>
