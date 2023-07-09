@@ -15,9 +15,10 @@
         <module name="interfaces" />
         <module name="v1_19_R1" />
         <module name="v1_19_3_R1" />
-        <module name="v1_18_R1" />
         <module name="v1_18_2_R1" />
+        <module name="v1_18_R1" />
         <module name="XPBorder" />
+        <module name="v1_20_2_R1" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
