@@ -28,7 +28,7 @@ public class Version {
              case "v1_18_R2" -> new de.jxson.xpborder.nms.v1_18_R2.XPBorderManager();
              case "v1_19_R1" -> new de.jxson.xpborder.nms.v1_19_R1.XPBorderManager();
              case "v1_19_R2" -> new de.jxson.xpborder.nms.v1_19_3_R1.XPBorderManager();
-             case "v1_20_2_R2" -> new de.jxson.xpborder.nms.v1_20_2_R1.XPBorderManager();
+             case "v1_20_R1" -> new de.jxson.xpborder.nms.v1_20_2_R1.XPBorderManager();
              default -> null;
          };
      }
